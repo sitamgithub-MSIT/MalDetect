@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %} Prediction - Malaria Cell Detection
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .display-5,
+  .display-4 {
+    margin-bottom: 10px;
+  }
+</style>
+
+<div class="container py-5">
+  <header class="text-white text-center">
+    <h1 class="display-4">Malaria Cell Detection</h1>
+    <p class="lead mb-5">You will see the prediction of the input image.</p>
+  </header>
+  <header class="text-white text-center">
+    <h1 class="display-5">Prediction</h1>
+    {% if predictions %}
+    <h2 class="display-4 text-dark font-weight-bold">{{predictions}}</h2>
+    {% else %}
+    <h2 class="display-4 text-dark font-weight-bold">{{err}}</h2>
+    {% endif %}
+  </header>
+</div>
+
+{% endblock %}

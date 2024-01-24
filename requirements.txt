@@ -1,0 +1,13 @@
+numpy
+pandas
+seaborn
+matplotlib
+python-dotenv
+Flask
+Flask-Cors
+gunicorn
+Werkzeug
+keras==2.15.0
+tensorflow==2.15.0
+tensorflow-datasets
+keras-cv==0.8.1
