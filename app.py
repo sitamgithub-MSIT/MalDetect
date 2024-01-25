@@ -57,4 +57,4 @@ def predict_image_file():
 
 # Driver code for running the app
 if __name__ == "__main__":
-    app.run(port=8000, debug=True)
+    app.run()
