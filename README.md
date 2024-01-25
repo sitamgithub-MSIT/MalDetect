@@ -18,6 +18,7 @@ The project is organized as follows:
 
   - `1. EDA MALARIA.ipynb`: This notebook contains the code for exploratory data analysis.
   - `2. MODEL TRAINING(model_name).ipynb`: This notebook contains the code for model training and evaluation of various models.
+  - `3. MODEL COMPARISON.ipynb`: This notebook contains the code for model comparison and selection of the best performing model.
 
 - `data/`: This directory contains the dataset link and description used for training the model.
 
@@ -114,7 +115,7 @@ The model training and evaluation process is documented in the Jupyter notebooks
 
 ## Results
 
-The trained model, with set hyperparameters, was able to achieve an accuracy of 96.5% on the evaluation set. Various models were trained and evaluated, and the best model was selected based on the performance metric. The best model was selected based on the evaluation of accuracy metric. The model saved as HDF5 file provided in the repository itself. Further that was applied in prediction task and connected with Flask app.
+The trained model, with set hyperparameters, was able to achieve an accuracy of 94.78% on the evaluation set. Various models were trained and evaluated, and the best model was selected based on the performance metric. The best model was selected based on the evaluation of accuracy metric. The model saved as HDF5 file provided in the repository itself. Further that was applied in prediction task and connected with Flask app.
 
 Note: For models, tensorboard was used to visualize the training and validation loss and accuracy in more detail. Though only for the best model, the tensorboard logs are available in the `assets/` directory.
 

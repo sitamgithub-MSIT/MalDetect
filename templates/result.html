@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
-{% block title %} Prediction - Malaria Cell Detection
+{% block title %}
+MalDetect | Prediction
 {% endblock %}
 
 {% block content %}
@@ -31,7 +32,7 @@
   <header class="text-white text-center">
     <h1 class="display-5">Prediction</h1>
     {% if predictions %}
-    <h2 class="display-4 text-dark font-weight-bold">{{predictions}}</h2>
+    <h2 class="display-4 text-dark font-weight-bold">Predicted Result: {{predictions}}</h2>
     {% else %}
     <h2 class="display-4 text-dark font-weight-bold">{{err}}</h2>
     {% endif %}

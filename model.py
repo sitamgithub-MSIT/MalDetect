@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 
 # Loading model
-model = load_model("model.h5")
+model = load_model("artifacts\model.h5")
 
 
 # Preparing and pre-processing the image
@@ -20,9 +20,15 @@ def preprocess_img(img_path):
     Returns:
         numpy.ndarray: The preprocessed image as a 4D array with shape (1, 224, 224, 3).
     """
+
+    # Opening the image file using PIL Image
     op_img = Image.open(img_path)
+
+    # Resizing the image to (224, 224) and converting it to an array
     img_resize = op_img.resize((224, 224))
     img2arr = img_to_array(img_resize)
+
+    # Reshaping the image to (1, 224, 224, 3)
     return img2arr.reshape(1, 224, 224, 3)
 
 
@@ -37,5 +43,7 @@ def predict_result(predict):
     Returns:
     int: The predicted result.
     """
+
+    # Predicting the result
     pred = model.predict(predict)
     return np.argmax(pred[0], axis=-1)

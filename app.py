@@ -39,13 +39,18 @@ def predict_image_file():
         Exception: If the file cannot be processed.
 
     """
+
+    # Try block for handling exceptions
     try:
+        # Checking if the request method is POST
         if request.method == "POST":
+            # Preprocessing the image file and predicting the result
             img = preprocess_img(request.files["file"].stream)
             pred = predict_result(img)
             return render_template("result.html", predictions=str(pred))
 
     except Exception:
+        # Error message to be displayed if the file cannot be processed
         error = "File cannot be processed."
         return render_template("result.html", err=error)
 
