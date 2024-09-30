@@ -11,7 +11,6 @@ def client():
     Returns:
         FlaskClient: The test client for the Flask app.
     """
-
     # Setting the app to testing mode
     app.config["TESTING"] = True
     yield app.test_client()
@@ -24,14 +23,12 @@ def test_main_page(client):
     Args:
         client: The test client for making HTTP requests.
 
-    Returns:
-        None
+    Returns: None
 
     Raises:
         AssertionError: If the response status code is not 200 or if the expected
                        message is not found in the response data.
     """
-
     # Sending a GET request to the main page
     response = client.get("/")
 
@@ -47,10 +44,8 @@ def test_predict_image_file_success(client):
     Args:
         client: The client object for making HTTP requests.
 
-    Returns:
-        None
+    Returns: None
     """
-
     # Sending a POST request to the prediction route with the test image
     with open("test_images\parasite0.png", "rb") as image_file:
         response = client.post("/prediction", data={"file": image_file})

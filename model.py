@@ -20,7 +20,6 @@ def preprocess_img(img_path):
     Returns:
         numpy.ndarray: The preprocessed image as a 4D array with shape (1, 224, 224, 3).
     """
-
     # Opening the image file using PIL Image
     op_img = Image.open(img_path)
 
@@ -37,13 +36,12 @@ def predict_result(predict):
     """
     Predicts the result for the given input.
 
-    Parameters:
-    predict (numpy.ndarray): The input data for prediction.
+    Args:
+        predict (numpy.ndarray): The input data for prediction.
 
     Returns:
-    int: The predicted result.
+        int: The predicted result.
     """
-
     # Predicting the result
     pred = model.predict(predict)
     return np.argmax(pred[0], axis=-1)

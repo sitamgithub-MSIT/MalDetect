@@ -27,7 +27,6 @@ def main():
 def predict_image_file():
     """
     Endpoint for predicting the result of an image file.
-
     This function receives a POST request with an image file and preprocesses it.
     It then predicts the result using the `predict_result` function.
     The predicted result is rendered in the "result.html" template.
@@ -37,9 +36,7 @@ def predict_image_file():
 
     Raises:
         Exception: If the file cannot be processed.
-
     """
-
     # Try block for handling exceptions
     try:
         # Checking if the request method is POST
