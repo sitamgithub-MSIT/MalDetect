@@ -1,5 +1,8 @@
 # Importing required libs
 import os
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
 from model import preprocess_img, predict_result
@@ -44,7 +47,7 @@ def predict_image_file():
             # Preprocessing the image file and predicting the result
             img = preprocess_img(request.files["file"].stream)
             pred = predict_result(img)
-            return render_template("result.html", predictions=str(pred))
+            return render_template("result.html", predictions=pred)
 
     except Exception:
         # Error message to be displayed if the file cannot be processed
