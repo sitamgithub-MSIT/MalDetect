@@ -1,12 +1,16 @@
 # Importing required libs
 import os
+import warnings
 
+warnings.filterwarnings("ignore")
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request
-from model import preprocess_img, predict_result
 from flask_cors import CORS
+from flask import Flask, render_template, request
+from src.pipeline.predict_pipeline import predict_result, preprocess_img
+from src.logger import logging
+
 
 load_dotenv()
 
@@ -49,7 +53,8 @@ def predict_image_file():
             pred = predict_result(img)
             return render_template("result.html", predictions=pred)
 
-    except Exception:
+    except Exception as e:
+        logging.error(f"Error in prediction endpoint: {e}")
         # Error message to be displayed if the file cannot be processed
         error = "File cannot be processed."
         return render_template("result.html", err=error)
