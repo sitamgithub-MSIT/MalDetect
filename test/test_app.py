@@ -47,7 +47,7 @@ def test_predict_image_file_success(client):
     Returns: None
     """
     # Sending a POST request to the prediction route with the test image
-    with open("test_images\parasite0.png", "rb") as image_file:
+    with open(r"test_images\parasite0.png", "rb") as image_file:
         response = client.post("/prediction", data={"file": image_file})
 
     # Checking if the response status code is 200 and if the expected message is in the response data
