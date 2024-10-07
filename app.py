@@ -5,22 +5,16 @@ import warnings
 warnings.filterwarnings("ignore")
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
-from dotenv import load_dotenv
 from flask_cors import CORS
 from flask import Flask, render_template, request
 from src.pipeline.predict_pipeline import predict_result, preprocess_img
 from src.logger import logging
 
 
-load_dotenv()
-
 # Instantiating flask app
 application = Flask(__name__)
 app = application
 CORS(app)
-
-# Environment variables for the application configuration settings
-app.config["DEBUG"] = os.environ.get("FLASK_DEBUG")
 
 
 # Home route for the app
@@ -62,4 +56,4 @@ def predict_image_file():
 
 # Driver code for running the app
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=False)

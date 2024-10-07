@@ -15,7 +15,6 @@ import keras_cv
 import tensorflow as tf
 from keras import optimizers
 from keras import losses
-import matplotlib.pyplot as plt
 
 # Local imports
 from src.components.dataset import load_and_prepare_dataset

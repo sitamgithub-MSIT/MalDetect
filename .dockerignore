@@ -1,3 +1,6 @@
+assets
+data
+test_images
 Dockerfile
 README.md
 *.pyc
