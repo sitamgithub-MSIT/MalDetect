@@ -39,7 +39,7 @@ def load_model(MODEL_PATH: str) -> keras.Model:
         raise CustomExceptionHandling(e, sys) from e
 
 
-model = load_model(MODEL_PATH)
+model = load_model(MODEL_PATH=MODEL_PATH)
 
 
 def preprocess_img(img_path: str) -> np.ndarray:
