@@ -15,3 +15,4 @@ MOMENTUM = 0.9
 PATIENCE = 2
 LABEL_SMOOTHING = 0.1
 NUM_CLASSES = 2
+MODEL_PATH = "artifacts/malaria_model.keras"

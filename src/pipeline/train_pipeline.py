@@ -40,6 +40,7 @@ from src.config import (
     PATIENCE,
     LABEL_SMOOTHING,
     NUM_CLASSES,
+    MODEL_PATH,
 )
 from src.logger import logging
 
@@ -145,7 +146,7 @@ def main():
             train_ds, epochs=EPOCHS, callbacks=train_callbacks, validation_data=eval_ds
         )
 
-    experiment.log_model("malaria_detection_model", "artifacts/malaria_model.keras")
+    experiment.log_model("malaria_detection_model", MODEL_PATH)
     logging.info(
         f"Model training completed successfully after {EPOCHS} epochs with {history.history}"
     )

@@ -9,11 +9,10 @@ from keras.utils import img_to_array
 from src.components.optimizer import WarmUpCosineDecay
 from src.logger import logging
 from src.exception import CustomExceptionHandling
+from src.config import IMAGE_SIZE, MODEL_PATH
 
 
-# Constants
-MODEL_PATH = "artifacts/malaria_model.keras"
-IMAGE_SIZE = (224, 224)
+# Class labels
 CLASS_LABELS = {
     0: "Parasitized",
     1: "Uninfected",
