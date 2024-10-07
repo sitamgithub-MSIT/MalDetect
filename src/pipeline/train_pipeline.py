@@ -5,12 +5,17 @@ warnings.filterwarnings("ignore")
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 os.environ["KERAS_BACKEND"] = "tensorflow"
 
+# Import comet_ml
+import comet_ml
+from comet_ml import Experiment
+
 # Import necessary libraries
 import keras
 import keras_cv
 import tensorflow as tf
 from keras import optimizers
 from keras import losses
+import matplotlib.pyplot as plt
 
 # Local imports
 from src.components.dataset import load_and_prepare_dataset
@@ -38,87 +43,157 @@ from src.config import (
 )
 from src.logger import logging
 
-# Set the seeds for reproducibility
-SEEDS = 42
-keras.utils.set_random_seed(SEEDS)
 
-# Set the total number of images and steps for warmup and hold
-total_images = 27558
-total_steps = (total_images // BATCH_SIZE) * EPOCHS
-warmup_steps = int(0.1 * total_steps)
-hold_steps = int(0.45 * total_steps)
+def main():
+    # Create an experiment
+    experiment = Experiment(
+        api_key=os.environ.get("COMET_API_KEY"),
+        project_name="maldetect-keras-notebook",
+        auto_histogram_weight_logging=True,
+        auto_histogram_gradient_logging=True,
+        auto_histogram_activation_logging=True,
+    )
 
-# Load and prepare the dataset
-train_ds, eval_ds, test_ds = load_and_prepare_dataset(
-    dataset_name=DATASET_NAME,
-    batch_size=BATCH_SIZE,
-    TRAIN_SPLIT=TRAIN_SPLIT,
-    VAL_SPLIT=VAL_SPLIT,
-    TEST_SPLIT=TEST_SPLIT,
-    SHUFFLE_BUFFER_MULTIPLIER=SHUFFLE_BUFFER_MULTIPLIER,
-)
+    params = {
+        "batch_size": BATCH_SIZE,
+        "IMAGE_SIZE": IMAGE_SIZE,
+        "epochs": EPOCHS,
+        "SHUFFLE_BUFFER_MULTIPLIER": SHUFFLE_BUFFER_MULTIPLIER,
+        "start_lr": START_LR,
+        "target_lr": TARGET_LR,
+        "weight_decay": WEIGHT_DECAY,
+        "momentum": MOMENTUM,
+        "patience": PATIENCE,
+        "label_smoothing": LABEL_SMOOTHING,
+    }
 
-# Get the augmenters and apply them to the train set
-augmenters = get_augmenters()
-augmenter_fn = create_augmenter_fn(augmenters)
-train_ds = train_ds.map(augmenter_fn, num_parallel_calls=tf.data.AUTOTUNE)
+    # Set the seeds for reproducibility
+    SEEDS = 42
+    keras.utils.set_random_seed(SEEDS)
 
-# Resizing the images in the train and test set and eval set
-inference_resizing = keras_cv.layers.Resizing(
-    IMAGE_SIZE[0], IMAGE_SIZE[1], crop_to_aspect_ratio=True
-)
-train_ds = train_ds.map(inference_resizing, num_parallel_calls=tf.data.AUTOTUNE)
-eval_ds = eval_ds.map(inference_resizing, num_parallel_calls=tf.data.AUTOTUNE)
-test_ds = test_ds.map(inference_resizing, num_parallel_calls=tf.data.AUTOTUNE)
+    # Set the total number of images and steps for warmup and hold
+    total_images = 27558
+    total_steps = (total_images // BATCH_SIZE) * EPOCHS
+    warmup_steps = int(0.1 * total_steps)
+    hold_steps = int(0.45 * total_steps)
 
-# Unpackage the dictionaries in the train and test sets
-train_ds = train_ds.map(unpackage_dict, num_parallel_calls=tf.data.AUTOTUNE)
-eval_ds = eval_ds.map(unpackage_dict, num_parallel_calls=tf.data.AUTOTUNE)
-test_ds = test_ds.map(unpackage_dict, num_parallel_calls=tf.data.AUTOTUNE)
+    # Load and prepare the dataset
+    train_ds, eval_ds, test_ds = load_and_prepare_dataset(
+        dataset_name=DATASET_NAME,
+        batch_size=BATCH_SIZE,
+        TRAIN_SPLIT=TRAIN_SPLIT,
+        VAL_SPLIT=VAL_SPLIT,
+        TEST_SPLIT=TEST_SPLIT,
+        SHUFFLE_BUFFER_MULTIPLIER=SHUFFLE_BUFFER_MULTIPLIER,
+    )
 
-# Define the learning rate schedule
-schedule = WarmUpCosineDecay(
-    start_lr=START_LR,
-    target_lr=TARGET_LR,
-    warmup_steps=warmup_steps,
-    total_steps=total_steps,
-    hold=hold_steps,
-)
+    # Get the augmenters and apply them to the train set
+    augmenters = get_augmenters()
+    augmenter_fn = create_augmenter_fn(augmenters)
+    train_ds = train_ds.map(augmenter_fn, num_parallel_calls=tf.data.AUTOTUNE)
 
-# Optimizer function for the model
-optimizer_fn = optimizers.SGD(
-    weight_decay=WEIGHT_DECAY,
-    learning_rate=schedule,
-    momentum=MOMENTUM,
-)
+    # Resizing the images in the train and test set and eval set
+    inference_resizing = keras_cv.layers.Resizing(
+        IMAGE_SIZE[0], IMAGE_SIZE[1], crop_to_aspect_ratio=True
+    )
+    train_ds = train_ds.map(inference_resizing, num_parallel_calls=tf.data.AUTOTUNE)
+    eval_ds = eval_ds.map(inference_resizing, num_parallel_calls=tf.data.AUTOTUNE)
+    test_ds = test_ds.map(inference_resizing, num_parallel_calls=tf.data.AUTOTUNE)
 
-# Loss function for the model
-loss_fn = losses.BinaryCrossentropy(label_smoothing=LABEL_SMOOTHING)
+    # Unpackage the dictionaries in the train and test sets
+    train_ds = train_ds.map(unpackage_dict, num_parallel_calls=tf.data.AUTOTUNE)
+    eval_ds = eval_ds.map(unpackage_dict, num_parallel_calls=tf.data.AUTOTUNE)
+    test_ds = test_ds.map(unpackage_dict, num_parallel_calls=tf.data.AUTOTUNE)
 
-# Callbacks for the training process
-train_callbacks = [
-    keras.callbacks.ModelCheckpoint(
-        filepath=f"./artifacts/{DATASET_NAME}_model.keras",
-        monitor="val_accuracy",
-        save_best_only=True,
-    ),
-    keras.callbacks.EarlyStopping(
-        monitor="val_loss", patience=PATIENCE, restore_best_weights=True
-    ),
-    keras.callbacks.TensorBoard(log_dir="./tensorboard_logs"),
-]
+    # Define the learning rate schedule
+    schedule = WarmUpCosineDecay(
+        start_lr=START_LR,
+        target_lr=TARGET_LR,
+        warmup_steps=warmup_steps,
+        total_steps=total_steps,
+        hold=hold_steps,
+    )
 
-# Model summary
-model = build_model(NUM_CLASSES, IMAGE_SIZE, optimizer_fn, loss_fn, TOP_DROPOUT_RATE)
+    # Optimizer function for the model
+    optimizer_fn = optimizers.SGD(
+        weight_decay=WEIGHT_DECAY,
+        learning_rate=schedule,
+        momentum=MOMENTUM,
+    )
 
-# Model training
-history = model.fit(
-    train_ds, epochs=EPOCHS, callbacks=train_callbacks, validation_data=eval_ds
-)
-logging.info(
-    f"Model training completed successfully after {EPOCHS} epochs with {history.history}"
-)
+    # Loss function for the model
+    loss_fn = losses.BinaryCrossentropy(label_smoothing=LABEL_SMOOTHING)
 
-# Evaluate the model on the test set
-accuracy = model.evaluate(test_ds)[1] * 100
-logging.info(f"Model accuracy on the test set: {accuracy:.2f}%")
+    # Callbacks for the training process
+    train_callbacks = [
+        keras.callbacks.ModelCheckpoint(
+            filepath=f"./artifacts/{DATASET_NAME}_model.keras",
+            monitor="val_accuracy",
+            save_best_only=True,
+        ),
+        keras.callbacks.EarlyStopping(
+            monitor="val_loss", patience=PATIENCE, restore_best_weights=True
+        ),
+        keras.callbacks.TensorBoard(log_dir="./tensorboard_logs"),
+    ]
+
+    # Model summary
+    model = build_model(
+        NUM_CLASSES, IMAGE_SIZE, optimizer_fn, loss_fn, TOP_DROPOUT_RATE
+    )
+
+    # Model training
+    with experiment.train():
+        history = model.fit(
+            train_ds, epochs=EPOCHS, callbacks=train_callbacks, validation_data=eval_ds
+        )
+        # Log learning curves and save actual curve images
+        for metric in history.history.keys():
+            values = history.history[metric]
+            step = list(range(1, len(values) + 1))
+
+            # Plotting the curve for each metric
+            plt.figure()
+            plt.plot(step, values)
+            plt.title(f"{metric} Curve")
+            plt.xlabel("Epoch")
+            plt.ylabel(metric)
+            plt.grid(True)
+
+            # Save the curve image
+            img_filename = f"{metric}_curve.png"
+            plt.savefig(img_filename)
+            plt.close()
+
+            # Log the saved image into the experiment
+            experiment.log_image(img_filename)
+
+    experiment.log_model(
+        "malaria_detection_model", "artifacts/malaria_detection_model.keras"
+    )
+    logging.info(
+        f"Model training completed successfully after {EPOCHS} epochs with {history.history}"
+    )
+
+    # Evaluate the model on the test set
+    with experiment.test():
+        metrics = model.evaluate(test_ds)
+        metrics_dict = {
+            "accuracy": metrics[1],
+            "loss": metrics[0],
+            "auc": metrics[4],
+            "precision": metrics[2],
+            "recall": metrics[3],
+        }
+        experiment.log_metrics(metrics_dict)
+    logging.info(f"Model evaluation completed successfully with {metrics_dict}")
+
+    # log parameters
+    experiment.log_parameters(params)
+
+    # log dataset hash
+    experiment.log_dataset_hash(train_ds)
+
+
+if __name__ == "__main__":
+    main()

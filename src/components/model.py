@@ -4,7 +4,16 @@ from typing import Tuple
 import keras
 from keras import layers
 from keras.applications import EfficientNetB0
-from keras.metrics import BinaryAccuracy, Precision, Recall, AUC
+from keras.metrics import (
+    BinaryAccuracy,
+    Precision,
+    Recall,
+    AUC,
+    FalsePositives,
+    FalseNegatives,
+    TruePositives,
+    TrueNegatives,
+)
 
 # Local imports
 from src.logger import logging
@@ -59,6 +68,10 @@ def build_model(
                 Precision(name="precision"),
                 Recall(name="recall"),
                 AUC(name="auc"),
+                FalsePositives(name="false_positives"),
+                FalseNegatives(name="false_negatives"),
+                TruePositives(name="true_positives"),
+                TrueNegatives(name="true_negatives"),
             ],
         )
 
