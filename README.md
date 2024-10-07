@@ -1,30 +1,45 @@
 # MalDetect: A Deep Learning application for Malaria Detection
 
-This repository contains the ML ZoomCamp Capstone Project 2, which focuses on developing a deep-learning model to predict malaria from cell images. The project aims to provide accurate predictions for malaria detection using deep learning techniques.
+This repository contains the application which focuses on developing a deep-learning model to predict malaria from blood cell images. The model is trained on a dataset of blood cell images infected with malaria and uninfected cells. The model is then wrapped in a Flask web application. The project is containerized using Docker and the Docker image is deployed on the Cloud Run service. The web application allows users to upload an image of a cell and get a prediction of whether the cell is infected with malaria or not.
 
 ## Dataset
 
-The project utilizes the malaria cell images dataset available on Kaggle. This dataset includes images of cells infected with malaria and uninfected cells. The dataset link and description are provided in the `data/` directory of this repository.
+The project utilizes the malaria cell images dataset available on Kaggle also in TensorFlow datasets. This dataset includes images of cells infected with malaria and uninfected cells. The dataset link and description are provided in the `data/` directory of this repository.
 
 ## Project Structure
 
 The project is organized as follows:
 
-- `artifacts/`: This directory contains the serialized model as `model.h5` file.
+- `artifacts/`: This directory contains the serialized model as `malaria_model.keras` file.
 
-- `assets/`: This directory contains the screenshots of the web application for testing and cloud deployment. Also, EDA and model training results are available in this folder.
+- `assets/`: This directory contains the screenshots of the web application for testing and cloud deployment. Also, EDA and model training and tracking using comet ml, and tensorboard logs for the model.
 
 - `notebook/`: This directory contains the Jupyter notebooks for data preprocessing, data augmentation, model training, and performance evaluation.
 
-  - `1. EDA MALARIA.ipynb`: This notebook contains the code for exploratory data analysis.
-  - `2. MODEL TRAINING(model_name).ipynb`: This notebook contains the code for model training and evaluation of various models.
-  - `3. MODEL COMPARISON.ipynb`: This notebook contains the code for model comparison and selection of the best performing model.
+  - `EDA_MALARIA_CELLS.ipynb`: This notebook contains the code for exploratory data analysis.
+  - `MODEL_TRAINING(EfficientNet).ipynb`: This notebook contains the code for EfficientNet model training and evaluation.
+  - `MODEL_TRAINING_CometML(EfficientNet).ipynb`: This notebook contains the code for experiment tracking using Comet ML.
 
 - `data/`: This directory contains the dataset link and description used for training the model.
 
-- `src/`: This directory contains the source code for the model training script of the best-performing model.
+- `src/`: This directory contains the source code for the model training and prediction pipeline along with different components and utilities.
 
-  - `train.py`: This file contains the code for model training and evaluation. It is the script for training the model based on the best-performing model notebook.
+  - `components/`: This directory contains the custom components for the model training and prediction pipeline.
+
+    - `dataset.py`: This file contains the code for loading and splitting the dataset.
+    - `augmentation.py`: This file contains the code for data augmentation applied to the dataset during training.
+    - `model.py`: This file contains the code for the model architecture used for model training.
+    - `optimizer.py`: This file contains the code for the optimizer tuning used in the model training pipeline.
+
+  - `pipeline/`: This directory contains the code for the model training and prediction pipeline.
+
+    - `train_pipeline.py`: This file contains the code for the model training pipeline.
+    - `predict_pipeline.py`: This file contains the code for the prediction pipeline.
+
+  - `config.py`: This file contains the configuration parameters for the model training and prediction pipeline.
+  - `utils.py`: This file contains the utility functions used in the model training and prediction pipeline.
+  - `logger.py`: This file contains the code for logging while training and prediction.
+  - `exception.py`: This file contains the custom exceptions used in the project.
 
 - `static/`: This directory contains the CSS stylesheet and JavaScript files for the web application.
 
@@ -37,36 +52,48 @@ The project is organized as follows:
   - `layout.html`: This file contains the code for the layout of the web application. It is used as a base template for the other templates.
   - `result.html`: This file contains the code for the prediction page of the web application. It contains the code for displaying the prediction results.
 
+- `test/`: This directory contains the pytest tests for the Flask web application.
+
+  - `test_app.py`: This file contains the tests for the Flask web application using the `pytest`. It contains tests for the home page and the prediction page.
+
 - `test_images/`: This directory contains the test images for testing the prediction task.
-- `model.py`: This file contains the code for various utility functions for the prediction task.
 - `app.py`: This file contains the code for the Flask web application. It contains the routes for the home page and the prediction page.
-- `test_app.py`: This file contains the tests for the Flask web application using the `pytest`. It contains tests for the home page and the prediction page.
+
+- `setup.py`: This file contains the setup configuration for the project. It can be used to install the project as a package using the `pip` package manager.
+- `.env.example`: This file contains the example environment variables for the Flask web application. It is used as a template for the actual `.env` file.
+- `app.yaml`: This file contains the configuration for deploying the Flask app on Google Cloud Platform (GCP).
 - `Dockerfile`: This file contains the instructions for building the Docker image for the project.
+- `.dockerignore`: This file contains the files to be ignored by Docker.
+- `.gcloudignore`: This file contains the files that Google Cloud will ignore.
+- `.gitignore`: This file contains the files to be ignored by Git.
 - `requirements.txt`: This file contains the list of Python dependencies for the project. It can be used to install the dependencies using the `pip` package manager.
 - `requirements-test.txt`: This file contains the list of Python dependencies for testing the project. It can be used to install the dependencies using the `pip` package manager.
+- `LICENSE`: This file contains the license information for the project.
 - `README.md`: This file provides an overview of the project and its structure.
 
 ## Getting Started (Super Quick Start)
 
 To get started with the project, without too much hassle, follow these steps (not ordered necessarily):
 
-1. Visit the repository: `git clone https://github.com/sitamgithub-MSIT/capstone-project2.git`
-2. Under the notebook folder, you will find the `1. EDA MALARIA.ipynb` and `2. MODEL TRAINING(model_name).ipynb` notebooks. These notebooks contain the code for data preprocessing, data augmentation, model training, and performance evaluation.
+1. Visit the repository: `git clone https://github.com/sitamgithub-MSIT/MalDetect.git`
+2. Under the notebook folder, you will find the `EDA_MALARIA_CELLS.ipynb` and `MODEL_TRAINING(EfficientNet).ipynb` and `MODEL_TRAINING_CometML(EfficientNet).ipynb` notebooks. These notebooks contain the code for data preprocessing, data augmentation, model training, and performance evaluation.
 3. Run those notebooks to perform EDA and model training and evaluation. Google Colab can be used to run the notebooks. T4 GPU configuration is sufficient to run the notebooks.
 4. Just upload the notebooks to Google Colab and run them in the Colab environment.
 5. Install the required dependencies using the `requirements.txt` file in colab environment.
 6. Happy notebooking!
 
+**Note**: For Comet ML notebook, you need to have a Comet ML account and API key to run the notebook. The Comet ML account can be created [here](https://www.comet.ml/). The API key can be found in the Comet ML account settings.
+
 ## Dependencies
 
 The project requires the following dependencies to run:
 
-- Python 3.9
+- Python 3.10.8
 - NumPy
+- Matplotlib
 - TensorFlow
 - Keras
-- Matplotlib
-- Seaborn
+- Comet ML
 - Flask
   ...and more.
 
@@ -76,11 +103,14 @@ Please refer to the `requirements.txt` file for the complete list of dependencie
 
 To install the required dependencies and set up the environment, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/sitamgithub-MSIT/capstone-project2.git`
-2. Create a virtual environment: `conda create -n dlproj python=3.9 -y`
-3. Activate the virtual environment: `conda activate dlproj`
-4. Install the required dependencies: `pip install -r requirements.txt`
-5. Run the Flask app: `python app.py`
+1. Clone the repository: `git clone https://github.com/sitamgithub-MSIT/MalDetect.git`
+2. Change the directory: `cd MalDetect`
+3. Create a virtual environment: `python -m venv dlproj`
+4. Activate the virtual environment:
+   - For Windows: `dlproj\Scripts\activate`
+   - For Linux/Mac: `source dlproj/bin/activate`
+5. Install the required dependencies: `pip install -r requirements.txt`
+6. Run the Flask app: `python app.py`
 
 Now, open up your local host and you should see the web application running. For more information, refer to the Flask documentation [here](https://flask.palletsprojects.com/en/2.0.x/quickstart/#debug-mode).
 
@@ -102,7 +132,7 @@ For detailed instructions and code examples, please refer to the blog post [here
 
 To test the deployed service locally, follow these steps:
 
-1. cd into the project directory.
+1. cd into the `test/` directory: `cd test/`
 2. Assuming you have your conda environment activated, install the dependencies for testing: `pip install -r requirements-test.txt`
 3. Run the `test_app.py` file to test the Flask app.
 4. Execute the command: `pytest test_app.py`
@@ -111,17 +141,26 @@ To test the deployed service locally, follow these steps:
 
 ## Model Training and Evaluation
 
-The model training and evaluation process is documented in the Jupyter notebooks in the `notebook/` directory. These notebooks provide step-by-step instructions on data augmentation, data preprocessing, model selection, and performance evaluation. Then the best-performing model notebook is converted into a Python script and saved as `train.py`. The `model.py` file contains the code for various utility functions for the prediction task.
+The model training and evaluation process is documented in the Jupyter notebooks in the `notebook/` directory. These notebooks provide step-by-step instructions on data augmentation, data preprocessing, model selection, and performance evaluation. Then these notebooks are converted into Python scripts and saved in the `src/` directory. The model training pipeline is implemented in the `train_pipeline.py` file. The model prediction pipeline is implemented in the `predict_pipeline.py` file.
+
+In order to train the model, follow these steps:
+
+1. Run the `train_pipeline.py` file: `python -m src.pipeline.train_pipeline`
+2. The model will be trained on the dataset and the serialized model will be saved in the `artifacts/` directory.
+3. The model evaluation metrics will be logged using Comet ML and TensorBoard.
+4. The model can be used for prediction by running the flask app through `app.py` that uses the saved model and uses `predict_pipeline.py` for prediction.
+
+**Note**: The model training and evaluation process can be customized by changing the hyperparameters and configurations in the `config.py` file. With the help of Comet ML, the model training and evaluation process can be tracked in more detail.
 
 ## Results
 
-The trained model, with set hyperparameters, was able to achieve an accuracy of 94.78% on the evaluation set. Various models were trained and evaluated, and the best model was selected based on the performance metric. The best model was selected based on the evaluation of the accuracy metric. The model is saved as an HDF5 file provided in the repository itself. Further, that was applied in the prediction task and connected with the Flask app.
+The trained model, with set hyperparameters, was able to achieve an accuracy of 94.10% on the evaluation. Various runs were performed using Comet ML for experiment tracking. The best model was selected based on the validation accuracy and loss. The model is saved as an keras file provided in the repository itself. Further, that was applied in the prediction task and connected with the Flask app.
 
-Note: For models, a tensorboard was used to visualize the training and validation loss and accuracy in more detail. Though only for the best model, the tensorboard logs are available in the `assets/` directory.
+**Note**: For model runs, tensorboard and comet ml were used to visualize the training and validation loss and accuracy in more detail. The tensorboard logs and comet ml logs screenshots are provided in the `assets/` folder.
 
 ## Conclusion
 
-In this project, we successfully developed a deep-learning model that can predict malaria from cell images. Then we wrapped the model in a Flask web application and containerized it using Docker. Finally, we deployed it on the Google Cloud Platform (GCP) using the Cloud Run service.
+In this project, we successfully developed a deep-learning model that can predict malaria from blood cell images. Then we wrapped the model in a Flask web application and containerized it using Docker. Finally, we deployed it on the Google Cloud Platform (GCP) using the Cloud Run service.
 
 ## License
 
