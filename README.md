@@ -1,6 +1,6 @@
 # MalDetect: A Deep Learning application for Malaria Detection
 
-This repository contains the application which focuses on developing a deep-learning model to predict malaria from blood cell images. The model is trained on a dataset of blood cell images infected with malaria and uninfected cells. The model is then wrapped in a Flask web application. The project is containerized using Docker and the Docker image is deployed on the Cloud Run service. The web application allows users to upload an image of a cell and get a prediction of whether the cell is infected with malaria or not.
+This repository contains the application that focuses on developing a deep-learning model to predict malaria from blood cell images. The model is trained on a dataset of blood cell images infected with malaria and uninfected cells. The model is then wrapped in a Flask web application. The project is containerized using Docker and the Docker image is deployed on the Cloud Run service. The web application allows users to upload an image of a cell and get a prediction of whether the cell is infected with malaria or not.
 
 ## Dataset
 
@@ -79,10 +79,10 @@ To get started with the project, without too much hassle, follow these steps (no
 2. Under the notebook folder, you will find the `EDA_MALARIA_CELLS.ipynb` and `MODEL_TRAINING(EfficientNet).ipynb` and `MODEL_TRAINING_CometML(EfficientNet).ipynb` notebooks. These notebooks contain the code for data preprocessing, data augmentation, model training, and performance evaluation.
 3. Run those notebooks to perform EDA and model training and evaluation. Google Colab can be used to run the notebooks. T4 GPU configuration is sufficient to run the notebooks.
 4. Just upload the notebooks to Google Colab and run them in the Colab environment.
-5. Install the required dependencies using the `requirements.txt` file in colab environment.
+5. Install the required dependencies using the `requirements.txt` file in the colab environment.
 6. Happy notebooking!
 
-**Note**: For Comet ML notebook, you need to have a Comet ML account and API key to run the notebook. The Comet ML account can be created [here](https://www.comet.ml/). The API key can be found in the Comet ML account settings.
+**Note**: For the Comet ML notebook, you need to have a Comet ML account and API key to run the notebook. The Comet ML account can be created [here](https://www.comet.ml/). The API key can be found in the Comet ML account settings.
 
 ## Dependencies
 
@@ -143,18 +143,18 @@ To test the deployed service locally, follow these steps:
 
 The model training and evaluation process is documented in the Jupyter notebooks in the `notebook/` directory. These notebooks provide step-by-step instructions on data augmentation, data preprocessing, model selection, and performance evaluation. Then these notebooks are converted into Python scripts and saved in the `src/` directory. The model training pipeline is implemented in the `train_pipeline.py` file. The model prediction pipeline is implemented in the `predict_pipeline.py` file.
 
-In order to train the model, follow these steps:
+To train the model, follow these steps:
 
 1. Run the `train_pipeline.py` file: `python -m src.pipeline.train_pipeline`
 2. The model will be trained on the dataset and the serialized model will be saved in the `artifacts/` directory.
 3. The model evaluation metrics will be logged using Comet ML and TensorBoard.
-4. The model can be used for prediction by running the flask app through `app.py` that uses the saved model and uses `predict_pipeline.py` for prediction.
+4. The model can be used for prediction by running the flask app through `app.py` which uses the saved model and uses `predict_pipeline.py` for prediction.
 
 **Note**: The model training and evaluation process can be customized by changing the hyperparameters and configurations in the `config.py` file. With the help of Comet ML, the model training and evaluation process can be tracked in more detail.
 
 ## Results
 
-The trained model, with set hyperparameters, was able to achieve an accuracy of 94.10% on the evaluation. Various runs were performed using Comet ML for experiment tracking. The best model was selected based on the validation accuracy and loss. The model is saved as an keras file provided in the repository itself. Further, that was applied in the prediction task and connected with the Flask app.
+The trained model, with set hyperparameters, was able to achieve an accuracy of 94.10% on the evaluation. Various runs were performed using Comet ML for experiment tracking. The best model was selected based on the validation accuracy and loss. The model is saved as a keras file provided in the repository itself. Further, that was applied in the prediction task and connected with the Flask app.
 
 **Note**: For model runs, tensorboard and comet ml were used to visualize the training and validation loss and accuracy in more detail. The tensorboard logs and comet ml logs screenshots are provided in the `assets/` folder.
 
