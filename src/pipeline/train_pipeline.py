@@ -7,7 +7,7 @@ os.environ["KERAS_BACKEND"] = "tensorflow"
 
 # Import comet_ml
 import comet_ml
-from comet_ml import Experiment
+from comet_ml import Experiment, Artifact
 
 # Import necessary libraries
 import keras
@@ -49,9 +49,6 @@ def main():
     experiment = Experiment(
         api_key=os.environ.get("COMET_API_KEY"),
         project_name="maldetect-keras-notebook",
-        auto_histogram_weight_logging=True,
-        auto_histogram_gradient_logging=True,
-        auto_histogram_activation_logging=True,
     )
 
     params = {
@@ -147,30 +144,8 @@ def main():
         history = model.fit(
             train_ds, epochs=EPOCHS, callbacks=train_callbacks, validation_data=eval_ds
         )
-        # Log learning curves and save actual curve images
-        for metric in history.history.keys():
-            values = history.history[metric]
-            step = list(range(1, len(values) + 1))
 
-            # Plotting the curve for each metric
-            plt.figure()
-            plt.plot(step, values)
-            plt.title(f"{metric} Curve")
-            plt.xlabel("Epoch")
-            plt.ylabel(metric)
-            plt.grid(True)
-
-            # Save the curve image
-            img_filename = f"{metric}_curve.png"
-            plt.savefig(img_filename)
-            plt.close()
-
-            # Log the saved image into the experiment
-            experiment.log_image(img_filename)
-
-    experiment.log_model(
-        "malaria_detection_model", "artifacts/malaria_detection_model.keras"
-    )
+    experiment.log_model("malaria_detection_model", "artifacts/malaria_model.keras")
     logging.info(
         f"Model training completed successfully after {EPOCHS} epochs with {history.history}"
     )
@@ -191,8 +166,15 @@ def main():
     # log parameters
     experiment.log_parameters(params)
 
-    # log dataset hash
-    experiment.log_dataset_hash(train_ds)
+    # log dataset information
+    experiment.log_dataset_info(
+        name="malaria", version="1.0.0", path="./tensorflow_datasets"
+    )
+
+    # log artifact
+    artifact = Artifact("malaria_dataset", artifact_type="dataset")
+    artifact.add("./tensorflow_datasets")
+    experiment.log_artifact(artifact)
 
 
 if __name__ == "__main__":
