@@ -1,10 +1,10 @@
 # MalDetect: A Deep Learning application for Malaria Detection
 
-This repository contains the application that develops a deep-learning model to predict malaria from blood cell images. The model is trained on a dataset of blood cell images infected with malaria and uninfected cells. The model is then wrapped in a Flask web application. The project is containerized using Docker and the Docker image is deployed on the Cloud Run service. The web application allows users to upload an image of a cell and get a prediction of whether the cell is infected with malaria or not.
+This repository contains the application that develops a deep-learning model to predict malaria from blood cell images. The model is trained on a dataset of blood cell images infected with malaria and uninfected cells. The model is then wrapped in a Flask web application. The project is containerized using Docker and the Docker image is deployed on the Cloud Run service. The web application allows users to upload a picture of a cell and get a prediction of whether the cell is infected with malaria or not.
 
 ## Dataset
 
-The project utilizes the malaria cell images dataset available on Kaggle and TensorFlow datasets. This dataset includes images of cells infected with malaria and uninfected cells. The dataset link and description are provided in the `data/` directory of this repository.
+The project utilizes the malaria cell images dataset available on Kaggle and TensorFlow datasets. This dataset includes images of cells infected with malaria and uninfected cells. The dataset link and description are provided in this repository's `data/` directory.
 
 ## Project Structure
 
@@ -50,7 +50,7 @@ The project is organized as follows:
 
   - `index.html`: This file contains the code for the home page of the web application. It contains a brief description of the project and an image upload placeholder.
   - `layout.html`: This file contains the code for the layout of the web application. It is used as a base template for the other templates.
-  - `result.html`: This file contains the code for the prediction page of the web application. It contains the code for displaying the prediction results.
+  - `result.html`: This file contains the code for the web application's prediction page, which displays the prediction results.
 
 - `test/`: This directory contains the pytest tests for the Flask web application.
 
