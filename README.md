@@ -4,7 +4,7 @@ This repository contains the application that develops a deep-learning model to 
 
 ## Dataset
 
-The project utilizes the malaria cell images dataset available on Kaggle and TensorFlow datasets. This dataset includes images of cells infected with malaria and uninfected cells. The dataset link and description are provided in this repository's `data/` directory.
+The project utilizes the malaria cell images dataset available on Kaggle and TensorFlow datasets. This dataset includes images of cells infected with malaria and uninfected cells. This repository's `data/` directory provides the dataset link and description.
 
 ## Project Structure
 
@@ -38,7 +38,7 @@ The project is organized as follows:
 
   - `config.py`: This file contains the configuration parameters for the model training and prediction pipeline.
   - `utils.py`: This file contains the utility functions used in the model training and prediction pipeline.
-  - `logger.py`: This file contains the code for logging while training and prediction.
+  - `logger.py`: This file contains the code for logging during training and prediction.
   - `exception.py`: This file contains the custom exceptions used in the project.
 
 - `static/`: This directory contains the CSS stylesheet and JavaScript files for the web application.
@@ -112,7 +112,7 @@ To install the required dependencies and set up the environment, follow these st
 5. Install the required dependencies: `pip install -r requirements.txt`
 6. Run the Flask app: `python app.py`
 
-Now, open up your local host and you should see the web application running. For more information, refer to the Flask documentation [here](https://flask.palletsprojects.com/en/2.0.x/quickstart/#debug-mode).
+Now, you can just open up your local host and you should see the web application running. If you would like more information, please refer to the Flask documentation [here](https://flask.palletsprojects.com/en/2.0.x/quickstart/#debug-mode).
 
 ## Deployment
 
