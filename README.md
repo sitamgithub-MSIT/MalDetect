@@ -36,7 +36,7 @@ The project is organized as follows:
     - `train_pipeline.py`: This file contains the code for the model training pipeline.
     - `predict_pipeline.py`: This file contains the code for the prediction pipeline.
 
-  - `config.py`: This file contains the configuration parameters for the model training and prediction pipeline.
+  - `config.py`: This file contains the model training and prediction pipeline configuration parameters.
   - `utils.py`: This file contains the utility functions used in the model training and prediction pipeline.
   - `logger.py`: This file contains the code for logging during training and prediction.
   - `exception.py`: This file contains the custom exceptions used in the project.
@@ -147,7 +147,7 @@ To train the model, follow these steps:
 
 1. Run the `train_pipeline.py` file: `python -m src.pipeline.train_pipeline`
 2. The model will be trained on the dataset and the serialized model will be saved in the `artifacts/` directory.
-3. The model evaluation metrics will be logged using Comet ML and TensorBoard.
+3. Comet ML and TensorBoard will log the model evaluation metrics.
 4. The model can be used for prediction by running the flask app through `app.py` which uses the saved model and uses `predict_pipeline.py` for prediction.
 
 **Note**: The model training and evaluation process can be customized by changing the hyperparameters and configurations in the `config.py` file. With the help of Comet ML, the model training and evaluation process can be tracked in more detail.
