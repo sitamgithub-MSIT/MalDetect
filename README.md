@@ -41,14 +41,14 @@ The project is organized as follows:
   - `logger.py`: This file contains the code for logging during training and prediction.
   - `exception.py`: This file contains the custom exceptions used in the project.
 
-- `static/`: This directory contains the CSS stylesheet and JavaScript files for the web application.
+- `static/`: This directory contains the web application's CSS stylesheet and JavaScript files.
 
   - `css/`: This directory contains the custom CSS stylesheet for the web application.
   - `js/`: This directory contains the image upload JavaScript file for the web application.
 
 - `templates/`: This directory contains the HTML templates for the web application. The templates are:
 
-  - `index.html`: This file contains the code for the home page of the web application. It contains a brief description of the project and an image upload placeholder.
+  - `index.html`: This file contains the code for the web application's home page. It contains a brief description of the project and an image upload placeholder.
   - `layout.html`: This file contains the code for the layout of the web application. It is used as a base template for the other templates.
   - `result.html`: This file contains the code for the web application's prediction page, which displays the prediction results.
 
