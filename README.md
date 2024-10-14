@@ -31,7 +31,7 @@ The project is organized as follows:
     - `model.py`: This file contains the code for the model architecture used for model training.
     - `optimizer.py`: This file contains the code for the optimizer tuning used in the model training pipeline.
 
-  - `pipeline/`: This directory contains the code for the model training and prediction pipeline.
+  - `pipeline/`: This directory contains the model training and prediction pipeline code.
 
     - `train_pipeline.py`: This file contains the code for the model training pipeline.
     - `predict_pipeline.py`: This file contains the code for the prediction pipeline.
@@ -49,7 +49,7 @@ The project is organized as follows:
 - `templates/`: This directory contains the HTML templates for the web application. The templates are:
 
   - `index.html`: This file contains the code for the web application's home page. It contains a brief description of the project and an image upload placeholder.
-  - `layout.html`: This file contains the code for the layout of the web application. It is used as a base template for the other templates.
+  - `layout.html`: This file contains the code for the web application layout. It is used as a base template for the other templates.
   - `result.html`: This file contains the code for the web application's prediction page, which displays the prediction results.
 
 - `test/`: This directory contains the pytest tests for the Flask web application.
@@ -126,7 +126,7 @@ Now, you can just open up your local host and you should see the web application
 - Deploy the Docker image to Google Cloud Run. (Build and push your Docker image to the Google Artifact Registry or another container registry. Deploy the image to Cloud Run by specifying the necessary configurations.)
 - Access the service using the provided URL. (Once deployed, a URL is provided to access the service. Use the URL to access the service.)
 
-For detailed instructions and code examples, please refer to the blog post [here](https://lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). The blog post should be sufficient to get you started with deploying the service on GCP. Also, refer to the screenshots in the assets folder for the deployment results of this project.
+For detailed instructions and code examples, please take a look at the blog post [here](https://lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying the service on GCP. Also, refer to the screenshots in the assets folder for the deployment results of this project.
 
 ## Testing
 
