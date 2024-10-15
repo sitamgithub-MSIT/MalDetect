@@ -59,15 +59,15 @@ The project is organized as follows:
 - `test_images/`: This directory contains the test images for testing the prediction task.
 - `app.py`: This file contains the code for the Flask web application. It contains the routes for the home page and the prediction page.
 
-- `setup.py`: This file contains the setup configuration for the project. It can be used to install the project as a package using the `pip` package manager.
+- `setup.py`: This file contains the setup configuration for the project. It can install the project as a package using the `pip` package manager.
 - `.env.example`: This file contains the example environment variables for the Flask web application. It is used as a template for the actual `.env` file.
 - `app.yaml`: This file contains the configuration for deploying the Flask app on Google Cloud Platform (GCP).
 - `Dockerfile`: This file contains the instructions for building the Docker image for the project.
 - `.dockerignore`: This file contains the files to be ignored by Docker.
 - `.gcloudignore`: This file contains the files that Google Cloud will ignore.
 - `.gitignore`: This file contains the files to be ignored by Git.
-- `requirements.txt`: This file contains the list of Python dependencies for the project. It can be used to install the dependencies using the `pip` package manager.
-- `requirements-test.txt`: This file contains the list of Python dependencies for testing the project. It can be used to install the dependencies using the `pip` package manager.
+- `requirements.txt`: This file contains the list of Python dependencies for the project. It can install the dependencies using the `pip` package manager.
+- `requirements-test.txt`: This file contains the list of Python dependencies for testing the project. It can install the dependencies using the `pip` package manager.
 - `LICENSE`: This file contains the license information for the project.
 - `README.md`: This file provides an overview of the project and its structure.
 
@@ -126,7 +126,7 @@ Now, you can just open up your local host and you should see the web application
 - Deploy the Docker image to Google Cloud Run. (Build and push your Docker image to the Google Artifact Registry or another container registry. Deploy the image to Cloud Run by specifying the necessary configurations.)
 - Access the service using the provided URL. (Once deployed, a URL is provided to access the service. Use the URL to access the service.)
 
-For detailed instructions and code examples, please take a look at the blog post [here](https://lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying the service on GCP. Also, refer to the screenshots in the assets folder for the deployment results of this project.
+For detailed instructions and code examples, please take a look at the blog post here: //lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying the service on GCP. Also, please take a look at the screenshots in the assets folder for the deployment results of this project.
 
 ## Testing
 
@@ -137,7 +137,7 @@ To test the deployed service locally, follow these steps:
 3. Run the `test_app.py` file to test the Flask app.
 4. Execute the command: `pytest test_app.py`
 5. Verify the response and check for any errors or issues.
-6. Optionally, refer to the screenshots in the assets folder for test results.
+6. Optionally, please take a look at the screenshots in the assets folder for test results.
 
 ## Model Training and Evaluation
 
@@ -154,7 +154,7 @@ To train the model, follow these steps:
 
 ## Results
 
-The trained model, with set hyperparameters, was able to achieve an accuracy of 94.10% on the evaluation. Various runs were performed using Comet ML for experiment tracking. The best model was selected based on the validation accuracy and loss. The model is saved as a keras file provided in the repository itself. Further, that was applied in the prediction task and connected with the Flask app.
+The trained model, with set hyperparameters, achieved an accuracy of 94.10% on the evaluation. Various runs were performed using Comet ML for experiment tracking. The best model was selected based on the validation accuracy and loss. The model is saved as a keras file provided in the repository itself. Further, that was applied in the prediction task and connected with the Flask app.
 
 **Note**: For model runs, tensorboard and comet ml were used to visualize the training and validation loss and accuracy in more detail. The screenshots of the tensorboard logs and comet ml logs are provided in the `assets/` folder.
 
