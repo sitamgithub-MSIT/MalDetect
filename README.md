@@ -126,7 +126,7 @@ Now, you can just open up your local host and you should see the web application
 - Deploy the Docker image to Google Cloud Run. (Build and push your Docker image to the Google Artifact Registry or another container registry. Deploy the image to Cloud Run by specifying the necessary configurations.)
 - Access the service using the provided URL. (Once deployed, a URL is provided to access the service. Use the URL to access the service.)
 
-For detailed instructions and code examples, please take a look at the blog post here: //lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying the service on GCP. Also, please take a look at the screenshots in the assets folder for the deployment results of this project.
+For detailed instructions and code examples, please take a look at the blog post [here](https://lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying the service on GCP. Also, please take a look at the screenshots in the assets folder for the deployment results of this project.
 
 ## Testing
 
