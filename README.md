@@ -28,7 +28,7 @@ The project is organized as follows:
 
     - `dataset.py`: This file contains the code for loading and splitting the dataset.
     - `augmentation.py`: This file contains the code for data augmentation applied to the dataset during training.
-    - `model.py`: This file contains the code for the model architecture used for model training.
+    - `model.py`: This file contains the code for the model architecture used for the model training.
     - `optimizer.py`: This file contains the code for the optimizer tuning used in the model training pipeline.
 
   - `pipeline/`: This directory contains the model training and prediction pipeline code.
@@ -48,13 +48,13 @@ The project is organized as follows:
 
 - `templates/`: This directory contains the HTML templates for the web application. The templates are:
 
-  - `index.html`: This file contains the code for the web application's home page. It contains a brief description of the project and an image upload placeholder.
+  - `index.html`: This file contains the code for the web application's home page. It includes a brief description of the project and an image upload placeholder.
   - `layout.html`: This file contains the code for the web application layout. It is used as a base template for the other templates.
   - `result.html`: This file contains the code for the web application's prediction page, which displays the prediction results.
 
 - `test/`: This directory contains the pytest tests for the Flask web application.
 
-  - `test_app.py`: This file contains the tests for the Flask web application using the `pytest`. It contains tests for the home page and the prediction page.
+  - `test_app.py`: This file contains the tests for the Flask web application using the `pytest`. It includes tests for the home page and the prediction page.
 
 - `test_images/`: This directory contains the test images for testing the prediction task.
 - `app.py`: This file contains the code for the Flask web application. It contains the routes for the home page and the prediction page.
@@ -82,7 +82,7 @@ To get started with the project, without too much hassle, follow these steps (no
 5. Install the required dependencies using the `requirements.txt` file in the colab environment.
 6. Happy notebooking!
 
-**Note**: To run the Comet ML notebook, you need a Comet ML account and API key. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
+**Note**: You need a Comet ML account and API key to run the Comet ML notebook. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
 
 ## Dependencies
 
@@ -150,7 +150,7 @@ To train the model, follow these steps:
 3. Comet ML and TensorBoard will log the model evaluation metrics.
 4. The model can be used for prediction by running the flask app through `app.py` which uses the saved model and uses `predict_pipeline.py` for prediction.
 
-**Note**: The model training and evaluation process can be customized by changing the hyperparameters and configurations in the `config.py` file. With the help of Comet ML, the model training and evaluation process can be tracked in more detail.
+**Note**: The model training and evaluation process can be customized by changing the hyperparameters and configurations in the config.py file. Comet ML can help track this process in more detail.
 
 ## Results
 
