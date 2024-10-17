@@ -59,7 +59,7 @@ The project is organized as follows:
 - `test_images/`: This directory contains the test images for testing the prediction task.
 - `app.py`: This file contains the code for the Flask web application. It contains the routes for the home page and the prediction page.
 
-- `setup.py`: This file contains the setup configuration for the project. It can install the project as a package using the `pip` package manager.
+- `setup.py`: This file contains the project's setup configuration. It can be installed as a package using the `pip` package manager.
 - `.env.example`: This file contains the example environment variables for the Flask web application. It is used as a template for the actual `.env` file.
 - `app.yaml`: This file contains the configuration for deploying the Flask app on Google Cloud Platform (GCP).
 - `Dockerfile`: This file contains the instructions for building the Docker image for the project.
@@ -77,12 +77,12 @@ To get started with the project, without too much hassle, follow these steps (no
 
 1. Visit the repository: `git clone https://github.com/sitamgithub-MSIT/MalDetect.git`
 2. Under the notebook folder, you will find the `EDA_MALARIA_CELLS.ipynb` and `MODEL_TRAINING(EfficientNet).ipynb` and `MODEL_TRAINING_CometML(EfficientNet).ipynb` notebooks. These notebooks contain the code for data preprocessing, data augmentation, model training, and performance evaluation.
-3. Run those notebooks to perform EDA and model training and evaluation. Google Colab can be used to run the notebooks. T4 GPU configuration is sufficient to run the notebooks.
+3. Run those notebooks to perform EDA and model training and evaluation. Google Colab can be used to run the notebooks, and a T4 GPU configuration is sufficient.
 4. Just upload the notebooks to Google Colab and run them in the Colab environment.
 5. Install the required dependencies using the `requirements.txt` file in the colab environment.
 6. Happy notebooking!
 
-**Note**: For the Comet ML notebook, you need to have a Comet ML account and API key to run the notebook. The Comet ML account can be created [here](https://www.comet.ml/). The API key can be found in the Comet ML account settings.
+**Note**: To run the Comet ML notebook, you need a Comet ML account and API key. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
 
 ## Dependencies
 
