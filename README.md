@@ -12,7 +12,7 @@ The project is organized as follows:
 
 - `artifacts/`: This directory contains the serialized model as `malaria_model.keras` file.
 
-- `assets/`: This directory contains the screenshots of the web application for testing and cloud deployment. Also, EDA and model training and tracking using comet ml, and tensorboard logs for the model.
+- `assets/`: This directory contains screenshots of the web application for testing and cloud deployment, EDA and model training and tracking using Comet ML, and tensorboard logs for the model.
 
 - `notebook/`: This directory contains the Jupyter notebooks for data preprocessing, data augmentation, model training, and performance evaluation.
 
@@ -28,7 +28,7 @@ The project is organized as follows:
 
     - `dataset.py`: This file contains the code for loading and splitting the dataset.
     - `augmentation.py`: This file contains the code for data augmentation applied to the dataset during training.
-    - `model.py`: This file contains the code for the model architecture used for the model training.
+    - `model.py`: This file contains the code for the model architecture used for the training.
     - `optimizer.py`: This file contains the code for the optimizer tuning used in the model training pipeline.
 
   - `pipeline/`: This directory contains the model training and prediction pipeline code.
@@ -97,7 +97,7 @@ The project requires the following dependencies to run:
 - Flask
   ...and more.
 
-Please refer to the `requirements.txt` file for the complete list of dependencies. And for testing, the project refers to the `requirements-test.txt` file.
+Please refer to the `requirements.txt` file for the complete list of dependencies. The project also refers to the `requirements-test.txt` file for testing.
 
 ## Installation and Environment Setup
 
