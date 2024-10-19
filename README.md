@@ -17,7 +17,7 @@ The project is organized as follows:
 - `notebook/`: This directory contains the Jupyter notebooks for data preprocessing, data augmentation, model training, and performance evaluation.
 
   - `EDA_MALARIA_CELLS.ipynb`: This notebook contains the code for exploratory data analysis.
-  - `MODEL_TRAINING(EfficientNet).ipynb`: This notebook contains the code for EfficientNet model training and evaluation.
+  - `MODEL_TRAINING(EfficientNet).ipynb`: This notebook contains the EfficientNet model training and evaluation code.
   - `MODEL_TRAINING_CometML(EfficientNet).ipynb`: This notebook contains the code for experiment tracking using Comet ML.
 
 - `data/`: This directory contains the dataset link and description used for training the model.
