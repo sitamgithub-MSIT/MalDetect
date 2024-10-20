@@ -126,7 +126,7 @@ Now, you can just open up your local host and you should see the web application
 - Deploy the Docker image to Google Cloud Run. (Build and push your Docker image to the Google Artifact Registry or another container registry. Deploy the image to Cloud Run by specifying the necessary configurations.)
 - Access the service using the provided URL. (Once deployed, a URL is provided to access the service. Use the URL to access the service.)
 
-For detailed instructions and code examples, please look at the blog post [here](https://lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying the service on GCP. Also, please look at the screenshots in the assets folder for the deployment results of this project.
+For detailed instructions and code examples, please review the blog post [here](https://lesliemwubbel.com/setting-seeask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying this on GCP. Also, please look at the screenshots in the assets folder for this project's deployment results.
 
 ## Testing
 
@@ -148,7 +148,7 @@ To train the model, follow these steps:
 1. Run the `train_pipeline.py` file: `python -m src.pipeline.train_pipeline`
 2. The model will be trained on the dataset and the serialized model will be saved in the `artifacts/` directory.
 3. Comet ML and TensorBoard will log the model evaluation metrics.
-4. The model can be used for prediction by running the flask app through `app.py` which uses the saved model and uses `predict_pipeline.py` for prediction.
+4. The model can be used for prediction by running the flask app through `app.py` which uses the saved model and `predict_pipeline.py` for prediction.
 
 **Note**: The model training and evaluation process can be customized by changing the hyperparameters and configurations in the config.py file. Comet ML can help track this process in more detail.
 
