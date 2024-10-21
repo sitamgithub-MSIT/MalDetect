@@ -20,7 +20,7 @@ The project is organized as follows:
   - `MODEL_TRAINING(EfficientNet).ipynb`: This notebook contains the EfficientNet model training and evaluation code.
   - `MODEL_TRAINING_CometML(EfficientNet).ipynb`: This notebook contains the code for experiment tracking using Comet ML.
 
-- `data/`: This directory contains the dataset link and description used for training the model.
+- `data/`: This directory contains the dataset link and description for training the model.
 
 - `src/`: This directory contains the source code for the model training and prediction pipeline along with different components and utilities.
 
@@ -67,7 +67,7 @@ The project is organized as follows:
 - `.gcloudignore`: This file contains the files that Google Cloud will ignore.
 - `.gitignore`: This file contains the files to be ignored by Git.
 - `requirements.txt`: This file contains the list of Python dependencies for the project. It can install the dependencies using the `pip` package manager.
-- `requirements-test.txt`: This file contains the list of Python dependencies for testing the project. It can install the dependencies using the `pip` package manager.
+- `requirements-test.txt`: This file contains the Python dependencies for testing the project. It can install the dependencies using the `pip` package manager.
 - `LICENSE`: This file contains the license information for the project.
 - `README.md`: This file provides an overview of the project and its structure.
 
@@ -82,7 +82,7 @@ To get started with the project, without too much hassle, follow these steps (no
 5. Install the required dependencies using the `requirements.txt` file in the colab environment.
 6. Happy notebooking!
 
-**Note**: You need a Comet ML account and API key to run the Comet ML notebook. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
+**Note**: To run the Comet ML notebook, you need a Comet ML account and API key. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
 
 ## Dependencies
 
