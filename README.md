@@ -77,12 +77,12 @@ To get started with the project, without too much hassle, follow these steps (no
 
 1. Visit the repository: `git clone https://github.com/sitamgithub-MSIT/MalDetect.git`
 2. Under the notebook folder, you will find the `EDA_MALARIA_CELLS.ipynb` and `MODEL_TRAINING(EfficientNet).ipynb` and `MODEL_TRAINING_CometML(EfficientNet).ipynb` notebooks. These notebooks contain the code for data preprocessing, data augmentation, model training, and performance evaluation.
-3. Run those notebooks to perform EDA and model training and evaluation. Google Colab can be used to run the notebooks, and a T4 GPU configuration is sufficient.
-4. Just upload the notebooks to Google Colab and run them in the Colab environment.
+3. Run those notebooks to perform EDA and model training and evaluation. Google Colab can run the notebooks, and a T4 GPU configuration is sufficient.
+4. upload the notebooks to Google Colab and run them in the Colab environment.
 5. Install the required dependencies using the `requirements.txt` file in the colab environment.
 6. Happy notebooking!
 
-**Note**: To run the Comet ML notebook, you need a Comet ML account and API key. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
+**Note**: You need a Comet ML account and API key to run the Comet ML notebook. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
 
 ## Dependencies
 
