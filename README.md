@@ -67,7 +67,7 @@ The project is organized as follows:
 - `.gcloudignore`: This file contains the files that Google Cloud will ignore.
 - `.gitignore`: This file contains the files to be ignored by Git.
 - `requirements.txt`: This file contains the list of Python dependencies for the project. It can install the dependencies using the `pip` package manager.
-- `requirements-test.txt`: This file contains the Python dependencies for testing the project. It can install the dependencies using the `pip` package manager.
+- `requirements_test.txt`: This file contains the Python dependencies for testing the project. It can install the dependencies using the `pip` package manager.
 - `LICENSE`: This file contains the license information for the project.
 - `README.md`: This file provides an overview of the project and its structure.
 
@@ -97,7 +97,7 @@ The project requires the following dependencies to run:
 - Flask
   ...and more.
 
-Please refer to the `requirements.txt` file for the complete list of dependencies. The project also refers to the `requirements-test.txt` file for testing.
+Please refer to the `requirements.txt` file for the complete list of dependencies. The project also refers to the `requirements_test.txt` file for testing.
 
 ## Installation and Environment Setup
 
@@ -132,10 +132,10 @@ For detailed instructions and code examples, please review the blog post [here](
 
 To test the deployed service locally, follow these steps:
 
-1. cd into the `test/` directory: `cd test/`
-2. Assuming you have your conda environment activated, install the dependencies for testing: `pip install -r requirements-test.txt`
+1. Check the `test/` directory for the test files.
+2. Assuming you have your virtual environment activated, install the dependencies for testing: `pip install -r requirements_test.txt`
 3. Run the `test_app.py` file to test the Flask app.
-4. Execute the command: `pytest test_app.py`
+4. Execute the command: `pytest test/test_app.py`
 5. Verify the response and check for any errors or issues.
 6. Optionally, please look at the screenshots in the assets folder for test results.
 
@@ -151,6 +151,16 @@ To train the model, follow these steps:
 4. The model can be used for prediction by running the flask app through `app.py` which uses the saved model and `predict_pipeline.py` for prediction.
 
 **Note**: The model training and evaluation process can be customized by changing the hyperparameters and configurations in the config.py file. Comet ML can help track this process in more detail.
+
+## Usage
+
+Once the Flask web application is up and running, allows users to upload an image of a cell and get a prediction of whether the cell is infected with malaria or not. To use the web application, follow these steps:
+
+1. Run the Flask app: `python app.py`
+2. Open a web browser and go to `http://localhost:5000/`
+3. Upload an image of a cell on the home page.
+4. Preview the image and click the "Submit" button.
+5. The prediction will be displayed on the prediction page.
 
 ## Results
 
