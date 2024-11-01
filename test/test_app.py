@@ -17,18 +17,7 @@ def client():
 
 
 def test_main_page(client):
-    """
-    Test the main page of the Malaria Detection App.
-
-    Args:
-        client: The test client for making HTTP requests.
-
-    Returns: None
-
-    Raises:
-        AssertionError: If the response status code is not 200 or if the expected
-                       message is not found in the response data.
-    """
+    """Test the main page of the Malaria Detection App."""
     # Sending a GET request to the main page
     response = client.get("/")
 
@@ -38,18 +27,11 @@ def test_main_page(client):
 
 
 def test_predict_image_file_success(client):
-    """
-    Test case for successful prediction.
-
-    Args:
-        client: The client object for making HTTP requests.
-
-    Returns: None
-    """
+    """Test case for successful prediction."""
     # Sending a POST request to the prediction route with the test image
     with open(r"test_images\parasite0.png", "rb") as image_file:
         response = client.post("/prediction", data={"file": image_file})
 
-    # Checking if the response status code is 200 and if the expected message is in the response data
+    # Checking if the response status code is 200 and if the predicted result is "Parasitized"
     assert response.status_code == 200
     assert b"Parasitized" in response.data
