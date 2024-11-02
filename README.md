@@ -82,7 +82,7 @@ To get started with the project, without too much hassle, follow these steps (no
 5. Install the required dependencies using the `requirements.txt` file in the colab environment.
 6. Happy notebooking!
 
-**Note**: You need a Comet ML account and API key to run the Comet ML notebook. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
+**Note**: To run the Comet ML notebook, you need a Comet ML account and API key. The Comet ML account can be created [here](https://www.comet.ml/), and the API key can be found in the Comet ML account settings.
 
 ## Dependencies
 
@@ -112,7 +112,7 @@ To install the required dependencies and set up the environment, follow these st
 5. Install the required dependencies: `pip install -r requirements.txt`
 6. Run the Flask app: `python app.py`
 
-Now, you can just open up your local host and you should see the web application running. If you would like more information, please refer to the Flask documentation [here](https://flask.palletsprojects.com/en/2.0.x/quickstart/#debug-mode).
+Now, you can open your local host and see the web application running. If you would like more information, please refer to the Flask documentation [here](https://flask.palletsprojects.com/en/2.0.x/quickstart/#debug-mode).
 
 ## Deployment
 
@@ -126,7 +126,7 @@ Now, you can just open up your local host and you should see the web application
 - Deploy the Docker image to Google Cloud Run. (Build and push your Docker image to the Google Artifact Registry or another container registry. Deploy the image to Cloud Run by specifying the necessary configurations.)
 - Access the service using the provided URL. (Once deployed, a URL is provided to access the service. Use the URL to access the service.)
 
-For detailed instructions and code examples, please review the blog post [here](https://lesliemwubbel.com/setting-seeask-app-and-deploying-it-via-google-cloud/). I think the blog post should be enough to get you started with deploying this on GCP. Also, please look at the screenshots in the assets folder for this project's deployment results.
+For detailed instructions and code examples, please review the blog post [here](https://lesliemwubbel.com/setting-up-a-flask-app-and-deploying-it-via-google-cloud/). The blog post should be enough to get you started with deploying this on GCP. Also, please look at the screenshots in the assets folder for this project's deployment results.
 
 ## Testing
 
